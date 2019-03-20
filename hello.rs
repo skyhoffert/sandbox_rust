@@ -16,5 +16,13 @@ fn main() {
         }
     }
 
+    println!("Enter an integer value: ");
+
+    let mut input = String::new();
+    std::io::stdin().read_line(&mut input).ok();
+
+    let value: u32 = input.trim().parse().unwrap();
+    println!("Got value: {}", value);
+
     println!("See Ya!");
 }
