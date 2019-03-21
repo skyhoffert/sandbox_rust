@@ -26,8 +26,9 @@ fn main() {
 
         input.clear();
         std::io::stdin().read_line(&mut input).ok();
+        let tokens: Vec<&str> = input.trim().split(" ").collect();
 
-        match input.trim() {
+        match tokens[0] {
             "exit" => break,
             "ls" => {
                 let paths = fs::read_dir("./").unwrap();
@@ -37,7 +38,20 @@ fn main() {
                 }
                 println!("");
             },
-            _ => (),
+            "add" => {
+                let sum = tokens[1].parse::<u64>().unwrap() + tokens[2].parse::<u64>().unwrap();
+                println!("Sum = {}", sum);
+            },
+            "slots" => {
+                let mut i: i32 = 0;
+                loop {
+                    print!("{}\r", i%10);
+                    if i > 1000000 { break; }
+                    i += 1;
+                }
+                println!();
+            },
+            _ => println!("No command, \"{}\"", tokens[0]),
         }
     }
 
